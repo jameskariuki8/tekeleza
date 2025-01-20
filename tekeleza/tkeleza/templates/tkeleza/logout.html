@@ -1,0 +1,27 @@
+
+{% extends 'tkeleza/base.html' %}
+{% block content %}
+{% load static %}
+
+{% if user.is_authenticated %}
+    <!-- Display user initials with a dropdown on hover -->
+    <div class="user-initials-container relative">
+        <div class="user-initials bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
+            {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
+        </div>
+        <div class="dropdown-menu absolute right-0 hidden bg-white shadow-lg rounded-lg mt-2 py-2">
+            <a href="{% url 'profile' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">View Profile</a>
+            <!-- Logout Link -->
+            <form action="{% url 'logout' %}" method="post" class="block px-4 py-2">
+                {% csrf_token %}
+                <button type="submit" class="text-gray-700 hover:bg-gray-100 w-full text-left">Logout</button>
+            </form>
+        </div>
+    </div>
+{% else %}
+    <!-- Display Sign Up button -->
+    <a href="{% url 'signup' %}">
+        <button class="signup">Sign Up</button>
+    </a>
+{% endif %}
+{% endblock %}

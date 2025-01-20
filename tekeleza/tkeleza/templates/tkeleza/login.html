@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+        <h1 class="text-2xl font-bold text-center mb-6">Login</h1>
+
+        <!-- Display form non-field errors -->
+        {% if form.non_field_errors %}
+        <div class="bg-red-100 text-red-700 p-4 rounded-lg mb-4">
+            {{ form.non_field_errors }}
+        </div>
+        {% endif %}
+
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+            
+            <!-- Username Field -->
+            <div class="flex flex-col items-center space-y-4">
+                {{ form.username.label_tag }}
+                <input type="text" name="username" id="username" class="text-center py-2 px-4 border rounded-lg w-3/4" placeholder="Enter your username">
+                <!-- Display username-specific errors -->
+                {% if form.username.errors %}
+                <p class="text-red-500 text-sm">{{ form.username.errors.0 }}</p>
+                {% endif %}
+            </div>
+            
+            <!-- Password Field -->
+            <div class="flex flex-col items-center space-y-4">
+                {{ form.password.label_tag }}
+                <input type="password" name="password" id="password" class="text-center py-2 px-4 border rounded-lg w-3/4" placeholder="Enter your password">
+                <!-- Display password-specific errors -->
+                {% if form.password.errors %}
+                <p class="text-red-500 text-sm">{{ form.password.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">Login</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+{% extends 'tkeleza/base.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
+        <h1 class="text-2xl font-bold text-center mb-6">Edit Your Profile</h1>
+        
+        <!-- Profile Edit Form -->
+        <form method="POST">
+            {% csrf_token %}
+            <div class="space-y-6">
+                <div class="flex justify-between">
+                    <div class="flex flex-col w-1/2 space-y-4">
+                        <label class="text-gray-700 font-semibold">First Name</label>
+                        <input type="text" name="first_name" value="{{ form.first_name.value }}" class="py-2 px-4 border rounded-lg w-full bg-gray-100" />
+                    </div>
+                    <div class="flex flex-col w-1/2 space-y-4">
+                        <label class="text-gray-700 font-semibold">Last Name</label>
+                        <input type="text" name="last_name" value="{{ form.last_name.value }}" class="py-2 px-4 border rounded-lg w-full bg-gray-100" />
+                    </div>
+                </div>
+
+                <div class="flex justify-between">
+                    <div class="flex flex-col w-1/2 space-y-4">
+                        <label class="text-gray-700 font-semibold">Email</label>
+                        <input type="email" name="email" value="{{ form.email.value }}" class="py-2 px-4 border rounded-lg w-full bg-gray-100" />
+                    </div>
+                    <div class="flex flex-col w-1/2 space-y-4">
+                        <label class="text-gray-700 font-semibold">Username</label>
+                        <input type="text" name="username" value="{{ form.username.value }}" class="py-2 px-4 border rounded-lg w-full bg-gray-100" />
+                    </div>
+                </div>
+
+                <div class="flex flex-col w-full space-y-4">
+                    <label class="text-gray-700 font-semibold">Password</label>
+                    <input type="password" name="password" class="py-2 px-4 border rounded-lg w-full bg-gray-100" />
+                </div>
+
+                <div class="flex justify-center mt-6">
+                    <button type="submit" class="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'tkeleza/base.html' %}
+{% block content %}
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+        <h1 class="text-2xl font-bold text-center mb-6">Sign Up</h1>
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+            <div class="flex flex-col items-center space-y-4">
+                <label for="first_name" class="text-gray-700 font-semibold">First Name</label>
+                <input type="text" name="first_name" id="first_name" class="text-center py-2 px-4 border rounded-lg w-3/4" placeholder="Enter your first name">
+            </div>
+            <div class="flex flex-col items-center space-y-4">
+                <label for="last_name" class="text-gray-700 font-semibold">Last Name</label>
+                <input type="text" name="last_name" id="last_name" class="text-center py-2 px-4 border rounded-lg w-3/4" placeholder="Enter your last name">
+            </div>
+            <div class="flex flex-col items-center space-y-4">
+                <label for="email" class="text-gray-700 font-semibold">Email</label>
+                <input type="email" name="email" id="email" class="text-center py-2 px-4 border rounded-lg w-3/4" placeholder="Enter your email">
+            </div>
+            <div class="flex flex-col items-center space-y-4">
+                <label for="username" class="text-gray-700 font-semibold">Username</label>
+                <input type="text" name="username" id="username" class="text-center py-2 px-4 border rounded-lg w-3/4" placeholder="Enter your username">
+            </div>
+            <div class="flex flex-col items-center space-y-4">
+                <label for="password" class="text-gray-700 font-semibold">Password</label>
+                <input type="password" name="password" id="password" class="text-center py-2 px-4 border rounded-lg w-3/4" placeholder="Enter your password">
+            </div>
+            <button type="submit" class="w-full py-2 px-4 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition">Sign Up</button>
+        </form>
+        <p class="mt-4 text-center text-gray-600">OR</p>
+        <p class="mt-2 text-center">
+            <a href="{% provider_login_url 'google' %}?next=/" 
+               class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-gray-700 bg-white hover:bg-gray-100 transition">
+                <img src="{% static 'tkeleza/images/google1.png' %}" alt="Google" class="w-5 h-5 mr-2">
+                Sign in with Google
+            </a>
+        </p>
+        <p class="mt-4 text-center text-gray-600">Already have an account? <a href="{% url 'login' %}" class="text-blue-600 hover:underline">Login</a></p>
+    </div>
+</body>
+</html>
+{% endblock %}

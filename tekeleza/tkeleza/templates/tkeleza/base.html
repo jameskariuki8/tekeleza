@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="{% static 'tkeleza/images/tekeleza-logo.jpg' %}" type="image/x-icon" />
+    <title>{% block title %}Tekeleza Hub{% endblock %}</title>
+    <meta name="description" content="#" />
+    <meta name="locale" content="en" />
+    <meta property="og:locale" content="en_US" />
+    <link rel="stylesheet" href="{% static 'tkeleza/css/planet.css' %}" />
+    <link rel="stylesheet" href="{% static 'tkeleza/css/styles.css' %}" />
+    <link rel="stylesheet" href="{% static 'tkeleza/css/layout-6NRHWYMF.css' %}" />
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: green;
+            padding: 0.8rem 1.5rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            gap: 1rem;
+            margin-right: 1rem; /* Adds spacing for the button */
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #00bcd4;
+        }
+
+        .navbar .signup {
+            background-color: #00bcd4;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-left: auto;
+            z-index: 1000;
+            margin-right: 0.5rem; /* Push the button slightly inward */
+        }
+
+        .navbar .signup:hover {
+            background-color: #008c9e;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .navbar .nav-links {
+                display: none; /* Hide links on smaller screens */
+            }
+
+            .signup {
+                margin: 10px auto 0; /* Centers the button */
+                align-self: center;
+            }
+        }
+
+        .content {
+            margin-top: 70px; /* Adjust for fixed navbar height */
+        }
+		.user-initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #00bcd4;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 30px;
+}
+.menu-icon {
+    width: 40px;
+    height: 20px;
+    background: url('path-to-your-icon.png') no-repeat center center;
+    background-size: contain;
+}
+/* Make sure to style the dropdown and show it on hover */
+.user-initials-container {
+    position: relative; /* So that the dropdown menu aligns properly */
+}
+
+.dropdown-menu {
+    display: none; /* Hide by default */
+}
+
+.user-initials-container:hover .dropdown-menu {
+    display: block; /* Show dropdown on hover */
+}
+
+.dropdown-menu a {
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f0f0f0; /* Light background on hover */
+}
+
+
+
+    </style>
+</head>
+<body>
+	<nav class="navbar">
+		<a href="#" class="logo">Tekeleza</a>
+		<div class="nav-links">
+			<a href="#">Home</a>
+			<a href="#">About Us</a>
+			<a href="#">Contact Us</a>
+			<a href="#">Articles</a>
+		</div>
+		{% if user.is_authenticated %}
+    <!-- Display user initials with a dropdown on hover -->
+    <div class="user-initials-container relative">
+        <div class="user-initials bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
+            {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
+			
+        </div>
+		<span class="menu-icon"></span>
+        <div class="dropdown-menu absolute right-0 hidden bg-white shadow-lg rounded-lg mt-2 py-2">
+            <a href="{% url 'profile' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">View Profile</a>
+            <a href="{% url 'logout' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</a>
+        </div>
+    </div>
+{% else %}
+    <!-- Display Sign Up button -->
+    <a href="{% url 'signup' %}">
+        <button class="signup">Sign Up</button>
+        <span class="menu-icon"></span>
+    </a>
+{% endif %}
+
+	</nav>
+	
+	     </a>
+    </nav>
+
+    <div class="content">
+        {% block content %}
+        <!-- Page-specific content goes here -->
+        {% endblock %}
+    </div>
+</body>
+</html>

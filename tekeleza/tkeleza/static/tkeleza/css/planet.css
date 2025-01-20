@@ -1,0 +1,215 @@
+.arc-1,.arc-2,.arc-3{
+    margin:auto
+}
+.arc-1,.arc-2{
+    view-timeline-inset:50%
+}
+#integrations{
+    height:calc(var(--outer-size)/ 2);
+    overflow:clip;
+    display:flex;
+    justify-content:center;
+    position:relative
+}
+.arc-wrap{
+    width:var(--outer-size);
+    position:relative;
+    left:0
+}
+.arc-2{
+    position:absolute;
+    top:calc((var(--outer-size) - (var(--gap-2)/ 2)) * -1);
+    left:0
+}
+.int-logo,.size-s{
+    width:var(--logo-s);
+    height:var(--logo-s)
+}
+.size-m{
+    width:var(--logo-m);
+    height:var(--logo-m)
+}
+.size-l{
+    width:var(--logo-l);
+    height:var(--logo-l)
+}
+.arc-1{
+    width:var(--outer-size);
+    height:var(--outer-size)
+}
+.arc-1:after{
+    content:'';
+    display:block;
+    width:calc(var(--outer-size) - var(--logo-s) - 5px);
+    height:calc(var(--outer-size) - var(--logo-s) - 5px);
+    margin:auto;
+    border-radius:50%;
+    border:2px solid rgba(186,155,252,.15);
+    position:absolute;
+    top:calc(var(--logo-s)/ 2);
+    left:calc(var(--logo-s)/ 2)
+}
+.arc-2:after,.arc-3:after{
+    content:'';
+    display:block;
+    margin:0 auto;
+    position:absolute
+}
+.arc-2{
+    width:calc(var(--outer-size) - var(--gap-2));
+    height:calc(var(--outer-size) - var(--gap-2))
+}
+.arc-2:after{
+    width:calc(var(--outer-size) - (var(--gap-2) * 2));
+    height:calc(var(--outer-size) - (var(--gap-2) * 2));
+    border-radius:50%;
+    border:2px solid rgba(186,155,252,.15);
+    top:calc(var(--gap-2)/ 2);
+    left:calc(var(--gap-2)/ 2)
+}
+.arc-3{
+    position:absolute;
+    top:calc((var(--outer-size) * 2 - var(--gap-3)) * -1);
+    left:0;
+    width:calc(var(--outer-size) - var(--gap-3));
+    height:calc(var(--outer-size) - var(--gap-3))
+}
+.arc-3:after{
+    width:calc(var(--outer-size) - (var(--gap-3) * 2));
+    height:calc(var(--outer-size) - (var(--gap-3) * 2));
+    border-radius:50%;
+    border:2px solid rgba(186,155,252,.15);
+    top:calc(var(--gap-3)/ 2);
+    left:calc(var(--gap-3)/ 2)
+}
+.logo-wrap{
+    display:flex;
+    justify-content:space-between;
+    height:100%
+}
+.arc-2 .logo-wrap{
+    width:120%;
+    margin:0 -10%
+}
+.arc-3 .logo-wrap{
+    width:80%;
+    margin:0 auto
+}
+.int-link{
+    z-index:2
+}
+.int-logo{
+    border:5px solid #fff;
+    border-radius:50%;
+    box-shadow:0 0 0 #fff;
+    border-collapse:collapse
+}
+.int-logo:hover{
+    box-shadow:0 0 8px #a7a1b648
+}
+.int-1{
+    transform:translateY(calc(var(--outer-size)/ 4.2)) translateX(95px)
+}
+.int-2,.int-5{
+    transform:translateY(calc(var(--logo-s) * 2.6)) translateX(0)
+}
+.int-3,.int-4{
+    transform:translateY(calc(var(--logo-s)/ 5)) translateX(0)
+}
+.int-6{
+    transform:translateY(calc(var(--outer-size)/ 4.2)) translateX(-95px)
+}
+.int-7{
+    transform:translateY(410px) translateX(215px)
+}
+.int-12{
+    transform:translateY(410px) translateX(-215px)
+}
+.int-8{
+    transform:translateY(185px) translateX(65px)
+}
+.int-11{
+    transform:translateY(185px) translateX(-65px)
+}
+.int-10,.int-9{
+    transform:translateY(50px) translateX(0)
+}
+.int-15{
+    transform:translateY(190px) translateX(-125px)
+}
+.int-13{
+    transform:translateY(190px) translateX(125px)
+}
+.int-14{
+    transform:translateY(75px) translateX(0)
+}
+.arc-1,.arc-2,.arc-3{
+    animation-fill-mode:both;
+    animation-timeline:view(block);
+    transform-origin:50% 50%
+}
+.arc{
+    position:relative;
+    overflow:clip;
+    border-radius:50%
+}
+.arc-1{
+    animation-name:rotate-3
+}
+.arc-2{
+    animation-name:rotate-2
+}
+.arc-3{
+    animation-name:rotate-1;
+    view-timeline-inset:0%
+}
+@keyframes rotate-1{
+    from{
+        transform:rotate(-25deg)
+    }
+    to{
+        transform:rotate(25deg)
+    }
+}
+@keyframes rotate-2{
+    from{
+        transform:rotate(15deg)
+    }
+    to{
+        transform:rotate(-15deg)
+    }
+}
+@keyframes rotate-3{
+    from{
+        transform:rotate(-15deg)
+    }
+    to{
+        transform:rotate(15deg)
+    }
+}
+
+
+
+.c-bSMAsK {
+    grid-column: 7 / span 4;
+}
+.c-bSMAsK {
+display: grid
+;
+justify-content: center;
+}
+p, div {
+font-family: 'Karla';
+}
+* {
+margin: 0;
+padding: 0;
+}
+user agent stylesheet
+div {
+display: block;
+unicode-bidi: isolate;
+}
+.c-eMYApQ {
+font-family: var(--fonts-fontFamilyProduct);
+}
