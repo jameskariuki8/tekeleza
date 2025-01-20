@@ -81,3 +81,6 @@ def edit_profile(request):
         form = ProfileEditForm(instance=request.user)
 
     return render(request, 'tkeleza/edit_profile.html', {'form': form})
+
+def contact_us(request):
+    return render(request, 'tkeleza/contact_us.html')

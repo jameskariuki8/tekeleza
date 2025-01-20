@@ -13,11 +13,6 @@
     <link rel="stylesheet" href="{% static 'tkeleza/css/styles.css' %}" />
     <link rel="stylesheet" href="{% static 'tkeleza/css/layout-6NRHWYMF.css' %}" />
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -30,7 +25,7 @@
             width: 100%;
             z-index: 1000;
         }
-
+    
         .navbar .logo {
             color: #fff;
             font-size: 1.5rem;
@@ -38,24 +33,24 @@
             text-transform: uppercase;
             text-decoration: none;
         }
-
+    
         .navbar .nav-links {
             display: flex;
             gap: 1rem;
-            margin-right: 1rem; /* Adds spacing for the button */
+            margin-right: 1rem;
         }
-
+    
         .navbar .nav-links a {
             color: #fff;
             text-decoration: none;
             font-size: 1rem;
             transition: color 0.3s;
         }
-
+    
         .navbar .nav-links a:hover {
             color: #00bcd4;
         }
-
+    
         .navbar .signup {
             background-color: #00bcd4;
             color: #fff;
@@ -66,118 +61,158 @@
             cursor: pointer;
             transition: background-color 0.3s;
             margin-left: auto;
-            z-index: 1000;
-            margin-right: 0.5rem; /* Push the button slightly inward */
         }
-
+    
         .navbar .signup:hover {
             background-color: #008c9e;
         }
-
+    
         /* Responsive Design */
         @media (max-width: 768px) {
             .navbar {
                 flex-wrap: wrap;
             }
-
+    
             .navbar .nav-links {
-                display: none; /* Hide links on smaller screens */
+                display: none;
+                flex-direction: column;
+                background-color: green;
+                width: 100%;
+                text-align: center;
             }
-
-            .signup {
-                margin: 10px auto 0; /* Centers the button */
-                align-self: center;
+    
+            .navbar .nav-links a {
+                padding: 0.5rem 0;
+            }
+    
+            .navbar .menu-toggle {
+                display: block;
+                background: transparent;
+                border: none;
+                color: #fff;
+                font-size: 1.5rem;
+                cursor: pointer;
             }
         }
-
-        .content {
-            margin-top: 70px; /* Adjust for fixed navbar height */
+    
+        .menu-toggle {
+            display: none;
         }
-		.user-initials {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #00bcd4;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-left: 30px;
-}
-.menu-icon {
-    width: 40px;
-    height: 20px;
-    background: url('path-to-your-icon.png') no-repeat center center;
-    background-size: contain;
-}
-/* Make sure to style the dropdown and show it on hover */
-.user-initials-container {
-    position: relative; /* So that the dropdown menu aligns properly */
-}
+    
+        .nav-links.show {
+            display: flex;
+        }
 
-.dropdown-menu {
-    display: none; /* Hide by default */
-}
+        .user-initials-container {
+        position: relative;
+        display: inline-block;
+    }
 
-.user-initials-container:hover .dropdown-menu {
-    display: block; /* Show dropdown on hover */
-}
+    .user-initials {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #00bcd4;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
 
-.dropdown-menu a {
-    text-decoration: none;
-    color: #333;
-}
+    .dropdown-menu {
+        display: none; /* Initially hidden */
+        position: absolute;
+        top: 50px;
+        right: 0;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        overflow: hidden;
+        z-index: 1000;
+        padding: 10px;
+    }
 
-.dropdown-menu a:hover {
-    background-color: #f0f0f0; /* Light background on hover */
-}
+    .dropdown-menu button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 5px;
+        background-color: #00bcd4;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background-color 0.3s, color 0.3s;
+    }
 
+    .dropdown-menu button:last-child {
+        margin-bottom: 0; /* Remove margin for the last button */
+    }
 
-
+    .dropdown-menu button:hover {
+        background-color: #008c9e;
+    }
     </style>
-</head>
-<body>
-	<nav class="navbar">
-		<a href="#" class="logo">Tekeleza</a>
-		<div class="nav-links">
-			<a href="#">Home</a>
-			<a href="#">About Us</a>
-			<a href="#">Contact Us</a>
-			<a href="#">Articles</a>
-		</div>
-		{% if user.is_authenticated %}
-    <!-- Display user initials with a dropdown on hover -->
-    <div class="user-initials-container relative">
-        <div class="user-initials bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
-            {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
-			
+    
+    <nav class="navbar">
+        <a href="#" class="logo">Tekeleza</a>
+        <button class="menu-toggle" id="menu-toggle">&#9776;</button>
+        <div class="nav-links" id="nav-links">
+            <a href="{% url 'my_view' %}">Home</a>
+            <a href="/#about-us">About Us</a>
+            <a href="{% url 'contact_us' %}">Contact Us</a>
+            <a href="#">Articles</a>
         </div>
-		<span class="menu-icon"></span>
-        <div class="dropdown-menu absolute right-0 hidden bg-white shadow-lg rounded-lg mt-2 py-2">
-            <a href="{% url 'profile' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">View Profile</a>
-            <a href="{% url 'logout' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</a>
+        {% if user.is_authenticated %}
+    <div class="user-initials-container">
+        <!-- Display the user's initials -->
+        <div class="user-initials" id="user-initials">
+            {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
+        </div>
+        <!-- Dropdown menu -->
+        <div class="dropdown-menu" id="dropdown-menu">
+            <form action="{% url 'profile' %}" method="get">
+                <button type="submit">View Profile</button>
+            </form>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
         </div>
     </div>
-{% else %}
-    <!-- Display Sign Up button -->
+    {% else %}
     <a href="{% url 'signup' %}">
         <button class="signup">Sign Up</button>
-        <span class="menu-icon"></span>
     </a>
-{% endif %}
+    {% endif %}
+</nav>
 
-	</nav>
-	
-	     </a>
-    </nav>
+<script>
+    // JavaScript to toggle the dropdown menu on click
+    document.addEventListener('DOMContentLoaded', function () {
+        const userInitials = document.getElementById('user-initials');
+        const dropdownMenu = document.getElementById('dropdown-menu');
 
-    <div class="content">
+        userInitials.addEventListener('click', function (e) {
+            e.stopPropagation(); // Prevent click from propagating to document
+            dropdownMenu.style.display =
+                dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Close dropdown if clicked outside
+        document.addEventListener('click', function () {
+            dropdownMenu.style.display = 'none';
+        });
+    });
+</script>
+    
         {% block content %}
         <!-- Page-specific content goes here -->
         {% endblock %}
-    </div>
 </body>
 </html>

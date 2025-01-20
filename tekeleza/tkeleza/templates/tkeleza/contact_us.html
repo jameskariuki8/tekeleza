@@ -1,0 +1,160 @@
+{% extends 'tkeleza/base.html' %}
+{% block content %}
+{% load static %}
+<head>
+    <style>
+
+
+/* Contact Section Styles */
+.contact {
+    padding: 3rem 1rem;
+    background: #fff;
+    color: #333;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 2.5rem;
+    color: #d50000; /* Tekeleza Red for header */
+    margin-bottom: 1rem;
+}
+
+.contact-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* Container to align form and contact info */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+/* Contact Form Styles */
+.contact-form {
+    flex: 1 1 45%;
+    background: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form label {
+    font-size: 1rem;
+    color: #000;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.contact-form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.contact-form .btn {
+    text-decoration: none;
+    background: #d50000; /* Red button */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.contact-form .btn:hover {
+    background: #b30000; /* Darker red on hover */
+}
+
+/* Contact Information Styles */
+.contact-info {
+    flex: 1 1 45%;
+    background: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h3 {
+    font-size: 1.8rem;
+    color: #000;
+    margin-bottom: 1rem;
+}
+
+.contact-info p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.social-icon img {
+    width: 30px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon img:hover {
+    transform: scale(1.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .contact-form,
+    .contact-info {
+        flex: 1 1 100%;
+        margin-bottom: 2rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <section class="contact">
+       <h2>Contact Us</h2>
+       <p class="contact-subtitle">Have any questions or want to collaborate? We would love to hear from you!</p>
+       <div class="contact-container">
+          <!-- Contact Form -->
+          <form action="https://formspree.io/f/mjkkpzej" method="POST" class="contact-form">
+             <label for="name">Your Name</label>
+             <input type="text" id="name" name="name" placeholder="Enter your name" required="">
+             <label for="email">Your Email</label>
+             <input type="email" id="email" name="email" placeholder="Enter your email" required="">
+             <label for="message">Your Message</label>
+             <textarea id="message" name="message" placeholder="Enter your message" required=""></textarea>
+             <button type="submit" class="btn">Submit</button>
+          </form>
+          <!-- Contact Info -->
+          <div class="contact-info">
+             <h3>Get In Touch</h3>
+             <p>Email: contact@tekelezahubkenya@gmail.com</p>
+             <p>Phone: +254 794115740</p>
+             <p>Address: Nairobi, Kenya</p>
+             <div class="social-icons">
+                <a href="#" class="social-icon"><img src="twitter-icon.png" alt="Twitter"></a>
+                <a href="#" class="social-icon"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+             </div>
+          </div>
+       </div>
+    </section>
+ </body>
+ {% endblock %}
