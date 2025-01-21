@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from .forms import ProfileEditForm
+from django.contrib.messages import get_messages
+
 
 # Render the index page
 def my_view(request):
@@ -69,14 +71,29 @@ def profile_view(request):
 
 def custom_logout(request):
     logout(request)  # Logs out the user
-    return redirect('my_view') 
+      # Clear any lingering messages
+    storage = get_messages(request)
+    for _ in storage:
+        pass
+    return redirect('login') 
 
 def edit_profile(request):
     if request.method == 'POST':
         form = ProfileEditForm(request.POST, instance=request.user)
         if form.is_valid():
-            form.save()
-            return redirect('profile')  # Redirect to the profile page after saving the changes
+            user = form.save(commit=False)  # Save form data without committing to the database
+
+            # Check if password was provided
+            new_password = form.cleaned_data.get('password')
+            if new_password:  # Only update password if provided
+                user.set_password(new_password)
+
+            user.save()  # Save the updated user data
+            update_session_auth_hash(request, user)  # Keep the user logged in after a password change
+            messages.success(request, "Profile updated successfully.")
+            return redirect('profile')  # Redirect to the profile page
+        else:
+            messages.error(request, "Error updating profile. Please check the form.")
     else:
         form = ProfileEditForm(instance=request.user)
 

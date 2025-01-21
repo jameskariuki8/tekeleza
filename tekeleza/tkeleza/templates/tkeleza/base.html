@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{% static 'tkeleza/css/planet.css' %}" />
     <link rel="stylesheet" href="{% static 'tkeleza/css/styles.css' %}" />
     <link rel="stylesheet" href="{% static 'tkeleza/css/layout-6NRHWYMF.css' %}" />
+   
     <style>
         .navbar {
             display: flex;
@@ -25,7 +26,7 @@
             width: 100%;
             z-index: 1000;
         }
-    
+
         .navbar .logo {
             color: #fff;
             font-size: 1.5rem;
@@ -33,24 +34,24 @@
             text-transform: uppercase;
             text-decoration: none;
         }
-    
+
         .navbar .nav-links {
             display: flex;
             gap: 1rem;
             margin-right: 1rem;
         }
-    
+
         .navbar .nav-links a {
             color: #fff;
             text-decoration: none;
             font-size: 1rem;
             transition: color 0.3s;
         }
-    
+
         .navbar .nav-links a:hover {
             color: #00bcd4;
         }
-    
+
         .navbar .signup {
             background-color: #00bcd4;
             color: #fff;
@@ -62,17 +63,17 @@
             transition: background-color 0.3s;
             margin-left: auto;
         }
-    
+
         .navbar .signup:hover {
             background-color: #008c9e;
         }
-    
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .navbar {
                 flex-wrap: wrap;
             }
-    
+
             .navbar .nav-links {
                 display: none;
                 flex-direction: column;
@@ -80,11 +81,11 @@
                 width: 100%;
                 text-align: center;
             }
-    
+
             .navbar .nav-links a {
                 padding: 0.5rem 0;
             }
-    
+
             .navbar .menu-toggle {
                 display: block;
                 background: transparent;
@@ -94,71 +95,142 @@
                 cursor: pointer;
             }
         }
-    
+
         .menu-toggle {
             display: none;
         }
-    
+
         .nav-links.show {
             display: flex;
         }
 
         .user-initials-container {
-        position: relative;
-        display: inline-block;
-    }
+            position: relative;
+            display: inline-block;
+            margin: 0 40px;
+        }
 
-    .user-initials {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: #00bcd4;
-        color: #fff;
-        font-size: 1rem;
-        font-weight: bold;
-        cursor: pointer;
-    }
 
-    .dropdown-menu {
-        display: none; /* Initially hidden */
-        position: absolute;
-        top: 50px;
-        right: 0;
-        background-color: #fff;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
-        overflow: hidden;
-        z-index: 1000;
-        padding: 10px;
-    }
+        .user-initials {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #00bcd4;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+/* Updated Dropdown Menu Styling */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #4caf50; /* Green Background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1000;
+    padding: 10px;
+    opacity: 0; /* Start hidden */
+    transform: translateY(-10px); /* Start with a slight offset */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition for showing */
+}
 
-    .dropdown-menu button {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 5px;
-        background-color: #00bcd4;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        text-align: center;
-        cursor: pointer;
-        font-size: 0.9rem;
-        transition: background-color 0.3s, color 0.3s;
-    }
+/* When the dropdown is shown (via JS toggle) */
+.dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0); /* Drop into place */
+}
 
-    .dropdown-menu button:last-child {
-        margin-bottom: 0; /* Remove margin for the last button */
-    }
+/* Button Styling inside the Dropdown */
+.dropdown-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #4caf50; /* Green Background */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-    .dropdown-menu button:hover {
-        background-color: #008c9e;
+/* No margin for the last button */
+.dropdown-menu button:last-child {
+    margin-bottom: 0;
+}
+
+/* Button Hover Effect */
+.dropdown-menu button:hover {
+    background-color: #388e3c; /* Darker Green on Hover */
+}
+
+/* Animation for the Button */
+.dropdown-menu button {
+    animation: fadeInButton 0.5s ease-in-out; /* Fade-in effect for each button */
+}
+
+@keyframes fadeInButton {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
     }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+        /* Footer Styles */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: green;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            z-index: 1030;
+        }
+
+        .rolling-text {
+            display: inline-block;
+            white-space: nowrap;
+            animation: rollText 10s linear infinite;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        @keyframes rollText {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                padding: 0.5rem 0;
+            }
+
+            .rolling-text {
+                font-size: 1rem;
+            }
+        }
     </style>
-    
+</head>
+<body>
     <nav class="navbar">
         <a href="#" class="logo">Tekeleza</a>
         <button class="menu-toggle" id="menu-toggle">&#9776;</button>
@@ -168,48 +240,62 @@
             <a href="{% url 'contact_us' %}">Contact Us</a>
             <a href="#">Articles</a>
         </div>
+
         {% if user.is_authenticated %}
-    <div class="user-initials-container">
-        <!-- Display the user's initials -->
-        <div class="user-initials" id="user-initials">
-            {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
+            <div class="user-initials-container">
+                <div class="user-initials" id="user-initials">
+                    {{ user.first_name|slice:":1" }}{{ user.last_name|slice:":1" }}
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <form action="{% url 'profile' %}" method="get">
+                        <button type="submit">View Profile</button>
+                    </form>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+            <a href="{% url 'signup' %}">
+                <button class="signup">Sign Up</button>
+            </a>
+        {% endif %}
+    </nav>
+
+    <footer>
+        <div class="rolling-text">
+            Empowering Innovators, Building the Future!
         </div>
-        <!-- Dropdown menu -->
-        <div class="dropdown-menu" id="dropdown-menu">
-            <form action="{% url 'profile' %}" method="get">
-                <button type="submit">View Profile</button>
-            </form>
-            <form action="{% url 'logout' %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Logout</button>
-            </form>
-        </div>
-    </div>
-    {% else %}
-    <a href="{% url 'signup' %}">
-        <button class="signup">Sign Up</button>
-    </a>
-    {% endif %}
-</nav>
+    </footer>
 
-<script>
-    // JavaScript to toggle the dropdown menu on click
-    document.addEventListener('DOMContentLoaded', function () {
-        const userInitials = document.getElementById('user-initials');
-        const dropdownMenu = document.getElementById('dropdown-menu');
+    <script>
+       document.addEventListener('DOMContentLoaded', function () {
+    const userInitials = document.getElementById('user-initials');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
 
-        userInitials.addEventListener('click', function (e) {
-            e.stopPropagation(); // Prevent click from propagating to document
-            dropdownMenu.style.display =
-                dropdownMenu.style.display === 'block' ? 'none' : 'block';
-        });
-
-        // Close dropdown if clicked outside
-        document.addEventListener('click', function () {
-            dropdownMenu.style.display = 'none';
-        });
+    // Toggle dropdown on initials click
+    userInitials.addEventListener('click', function (e) {
+        e.stopPropagation(); // Prevents the click from bubbling up and triggering the document click event
+        dropdownMenu.classList.toggle('show'); // Toggle 'show' class to display the dropdown
     });
-</script>
+
+    // Toggle mobile nav menu
+    menuToggle.addEventListener('click', function () {
+        navLinks.classList.toggle('show');
+    });
+
+    // Close dropdown if clicked outside
+    document.addEventListener('click', function (e) {
+        if (!userInitials.contains(e.target)) {
+            dropdownMenu.classList.remove('show'); // Remove 'show' class to hide the dropdown
+        }
+    });
+});
+
+    </script>
     
         {% block content %}
         <!-- Page-specific content goes here -->

@@ -3,94 +3,126 @@
 {% load static %}
 <head>
     <style>
-
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 /* Contact Section Styles */
 .contact {
-    padding: 3rem 1rem;
-    background: #fff;
-    color: #333;
+    padding: 4rem 2rem;
+    background: linear-gradient(to right, white, white); /* Gradient background */
+    color: #fff;
     text-align: center;
+    margin-top: 80px;
+    border-radius: 8px;
 }
 
 .contact h2 {
-    font-size: 2.5rem;
-    color: #d50000; /* Tekeleza Red for header */
+    font-size: 3rem;
+    color: black;
     margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    animation: fadeIn 1.5s ease-out;
 }
 
 .contact-subtitle {
     font-size: 1.2rem;
-    color: #666;
+    color: black;
     margin-bottom: 2rem;
+    animation: fadeIn 2s ease-out;
 }
 
-/* Container to align form and contact info */
+/* Contact Container */
 .contact-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 2rem;
+    justify-content: space-around;
+    gap: 3rem;
+    animation: slideIn 1.5s ease-out;
 }
 
 /* Contact Form Styles */
 .contact-form {
     flex: 1 1 45%;
-    background: #f9f9f9;
-    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    padding: 2.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.contact-form:hover {
+    transform: translateY(-10px);
 }
 
 .contact-form label {
-    font-size: 1rem;
-    color: #000;
-    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 0.75rem;
     display: block;
 }
 
 .contact-form input,
 .contact-form textarea {
     width: 100%;
-    padding: 1rem;
+    padding: 1.2rem;
     margin-bottom: 1.5rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 2px solid black; /* Bright accent color */
+    border-radius: 6px;
     font-size: 1rem;
+    background: #f9f9f9;
+    transition: all 0.3s ease;
 }
 
-.contact-form textarea {
-    min-height: 150px;
-    resize: vertical;
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: black; /* Focus color */
+    box-shadow: 0 0 10px black(255, 126, 95, 0.7);
 }
 
 .contact-form .btn {
-    text-decoration: none;
-    background: #d50000; /* Red button */
+    background: black;
     color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: background 0.3s ease;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    width: 100%;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px blue(0, 0, 0, 0.2);
 }
 
 .contact-form .btn:hover {
-    background: #b30000; /* Darker red on hover */
+    background: black; /* Hover color */
+    transform: translateY(-5px);
 }
 
-/* Contact Information Styles */
+.contact-form .btn:active {
+    transform: translateY(2px); /* Button press effect */
+}
+
+/* Contact Info Styles */
 .contact-info {
     flex: 1 1 45%;
-    background: #f9f9f9;
-    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.contact-info:hover {
+    transform: translateY(-10px);
 }
 
 .contact-info h3 {
     font-size: 1.8rem;
-    color: #000;
-    margin-bottom: 1rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
 }
 
 .contact-info p {
@@ -101,23 +133,26 @@
 
 .social-icons {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
+    animation: fadeIn 1.8s ease-out;
 }
 
 .social-icon img {
-    width: 30px;
-    transition: transform 0.3s ease;
+    width: 40px;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .social-icon img:hover {
-    transform: scale(1.2);
+    transform: scale(1.3);
+    filter: brightness(1.3);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .contact-container {
         flex-direction: column;
+        align-items: center;
     }
 
     .contact-form,
@@ -125,36 +160,71 @@
         flex: 1 1 100%;
         margin-bottom: 2rem;
     }
+
+    .contact h2 {
+        font-size: 2.5rem;
+    }
+
+    .contact-subtitle {
+        font-size: 1.1rem;
+    }
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
     </style>
 </head>
 <body>
-    <section class="contact">
-       <h2>Contact Us</h2>
-       <p class="contact-subtitle">Have any questions or want to collaborate? We would love to hear from you!</p>
-       <div class="contact-container">
-          <!-- Contact Form -->
-          <form action="https://formspree.io/f/mjkkpzej" method="POST" class="contact-form">
-             <label for="name">Your Name</label>
-             <input type="text" id="name" name="name" placeholder="Enter your name" required="">
-             <label for="email">Your Email</label>
-             <input type="email" id="email" name="email" placeholder="Enter your email" required="">
-             <label for="message">Your Message</label>
-             <textarea id="message" name="message" placeholder="Enter your message" required=""></textarea>
-             <button type="submit" class="btn">Submit</button>
-          </form>
-          <!-- Contact Info -->
-          <div class="contact-info">
-             <h3>Get In Touch</h3>
-             <p>Email: contact@tekelezahubkenya@gmail.com</p>
-             <p>Phone: +254 794115740</p>
-             <p>Address: Nairobi, Kenya</p>
-             <div class="social-icons">
-                <a href="#" class="social-icon"><img src="twitter-icon.png" alt="Twitter"></a>
-                <a href="#" class="social-icon"><img src="linkedin-icon.png" alt="LinkedIn"></a>
-             </div>
-          </div>
-       </div>
+    <section class="contact fade-in mt-16">
+        <h2 class="text-3xl md:text-4xl mb-4">Contact Us</h2>
+        <p class="contact-subtitle mb-8">Have any questions or want to collaborate? We would love to hear from you!</p>
+        <div class="contact-container mx-auto max-w-5xl">
+            <!-- Contact Form -->
+            <form action="https://formspree.io/f/mjkkpzej" method="POST" class="contact-form">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" placeholder="Enter your message" required></textarea>
+
+                <button type="submit" class="btn">Submit</button>
+            </form>
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p>Email: <a href="mailto:tekelezahubkenya@gmail.com" class="text-red-600 underline">tekelezahubkenya@gmail.com</a></p>
+                <p>Phone: <a href="tel:+254794115740" class="text-red-600 underline">+254 794 115 740</a></p>
+                <p>Address: Nairobi, Kenya</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><img src="{% static '/tkeleza/images/Twitter_Branded_likes_661c581d65.webp' %}" alt="Twitter"></a>
+                    <a href="#" class="social-icon"><img src="{% static 'images/tkeleza/LinkedIn' %}" alt="LinkedIn"></a>
+                </div>
+            </div>
+        </div>tekeleza/tkeleza/static/tkeleza/images/Twitter_Branded_likes_661c581d65.webp
     </section>
- </body>
- {% endblock %}
+</body>
+{% endblock %}
