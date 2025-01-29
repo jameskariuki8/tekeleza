@@ -62,6 +62,7 @@
             cursor: pointer;
             transition: background-color 0.3s;
             margin-left: auto;
+            margin: 0 40px;
         }
 
         .navbar .signup:hover {
@@ -228,6 +229,7 @@
                 font-size: 1rem;
             }
         }
+        
     </style>
 </head>
 <body>
@@ -238,7 +240,7 @@
             <a href="{% url 'my_view' %}">Home</a>
             <a href="/#about-us">About Us</a>
             <a href="{% url 'contact_us' %}">Contact Us</a>
-            <a href="#">Articles</a>
+            <a href="{% url 'article_list' %}">Articles</a>
         </div>
 
         {% if user.is_authenticated %}

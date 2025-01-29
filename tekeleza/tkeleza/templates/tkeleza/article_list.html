@@ -1,0 +1,44 @@
+{% extends 'tkeleza/base.html' %}
+{% block content %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-6 pt-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {% for article in articles %}
+                <div class="bg-white shadow rounded-lg overflow-hidden">
+                    <!-- Image section -->
+                    <div class="relative w-full h-48">
+                        <img src="{{ article.image.url }}" 
+                             alt="{{ article.title }}" 
+                             class="absolute inset-0 w-full h-full object-cover">
+                    </div>
+                    <!-- Content section -->
+                    <div class="p-4">
+                        <!-- Title and Date Row -->
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-lg font-bold">{{ article.title }}</h2>
+                            <p class="text-sm text-gray-500">{{ article.publication_date }}</p>
+                        </div>
+                        <!-- Description -->
+                        <p class="text-sm mt-2">{{ article.description }}</p>
+                        <!-- Author Info -->
+                        <div class="flex items-center mt-4">
+                            <div>
+                                <p class="text-sm font-bold">{{ article.author_name }}</p>
+                                <p class="text-xs text-gray-500">{{ article.author_location }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

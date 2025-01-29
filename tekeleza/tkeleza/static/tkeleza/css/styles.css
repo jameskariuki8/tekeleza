@@ -9461,21 +9461,14 @@ div:has(> .segmentTabs) {
    .c-fGhUph-ibUJaKI-css{
        @xs 
    }
-   @media (min-width: 320px){
-       .c-fGhUph-ibUJaKI-css{
-           grid-template-columns:1fr 
-       }
-   }
-   @media (min-width: 640px){
-       .c-fGhUph-ibUJaKI-css{
-           grid-template-columns:1fr 
-       }
-   }
-   @media (min-width: 1024px){
-       .c-fGhUph-ibUJaKI-css{
-           grid-template-columns:1fr 1fr 1fr 
-       }
-   }
+   @media (max-width: 768px) {
+    .int-logo {
+        display: block !important; /* Ensure images are always visible */
+        width: 60px; /* Adjust size */
+        height: auto;
+    }
+}
+
    .c-fGhUph-ibUJaKI-css{
        @media (min-width: 1280px) ;
        column-gap:;

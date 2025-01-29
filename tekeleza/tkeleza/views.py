@@ -4,8 +4,11 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
+from django.urls import path
 from .forms import ProfileEditForm
 from django.contrib.messages import get_messages
+from django.contrib.auth.views import PasswordResetView
+from .models import Article
 
 
 # Render the index page
@@ -101,3 +104,17 @@ def edit_profile(request):
 
 def contact_us(request):
     return render(request, 'tkeleza/contact_us.html')
+
+#password reset
+
+class CustomPasswordResetView(PasswordResetView):
+    template_name = 'tkeleza/forgot_password.html'
+    email_template_name = 'tkeleza/password_reset_email.html'
+    success_url = '/forgot-password/done/'
+
+# Use CustomPasswordResetView in URLs
+path('forgot-password/', CustomPasswordResetView.as_view(), name='password_reset'),
+
+def article_list(request):
+    articles = Article.objects.all().order_by('-publication_date')
+    return render(request, 'tkeleza/article_list.html', {'articles': articles})

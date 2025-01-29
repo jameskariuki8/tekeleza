@@ -23,7 +23,8 @@
 }
 .int-logo,.size-s{
     width:var(--logo-s);
-    height:var(--logo-s)
+    height:var(--logo-s);
+    display: block;
 }
 .size-m{
     width:var(--logo-m);
